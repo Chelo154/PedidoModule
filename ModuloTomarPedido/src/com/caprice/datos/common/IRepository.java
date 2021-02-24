@@ -5,7 +5,9 @@
  */
 package com.caprice.datos.common;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  *
@@ -18,5 +20,7 @@ public interface IRepository<Entity> {
     public Entity buscarPorID(int id);
     public void Eliminar(int id);
     public void Modificar(int id, Entity entidadModificada);
+    public int size();
+    public List<Entity> where(Predicate<Entity>predicado);
     
 }
