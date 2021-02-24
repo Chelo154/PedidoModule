@@ -54,6 +54,11 @@ public class ProductArrayListAdapter implements IRepository<Producto>{
             }
         }
     }
+
+    @Override
+    public int size() {
+        return productos.size();
+    }
     
     
 }
