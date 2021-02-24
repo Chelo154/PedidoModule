@@ -23,11 +23,11 @@ public class ControladorTomarPedido {
     Pedido nuevoPedido;
     
    
-   public ControladorTomarPedido(){
+   public ControladorTomarPedido(RepositoryManager manager){
        
-        this.repoProductos = RepositoryManager.getManager().getRepoProductos();
-        this.repoPedidos = RepositoryManager.getManager().getRepoPedidos();
-        this.repoMesas = RepositoryManager.getManager().getRepoMesas();
+        this.repoProductos = manager.getRepoProductos();
+        this.repoPedidos = manager.getRepoPedidos();
+        this.repoMesas = manager.getRepoMesas();
    }
 
     public Pedido getNuevoPedido() {
@@ -60,6 +60,7 @@ public class ControladorTomarPedido {
    }   
    
    public void confirmarPedido(){
+       nuevoPedido.getMesaPrincipal().ocupar();
        repoPedidos.guardar(nuevoPedido);
    }
    

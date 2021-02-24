@@ -9,6 +9,7 @@ import com.caprice.datos.common.IRepository;
 import com.caprice.dominio.Producto;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  *
@@ -58,6 +59,19 @@ public class ProductArrayListAdapter implements IRepository<Producto>{
     @Override
     public int size() {
         return productos.size();
+    }
+
+    @Override
+    public List<Producto> where(Predicate<Producto> predicado) {
+        ArrayList<Producto> matches = new ArrayList<>();
+        
+        for(Producto p : productos){
+            if(predicado.test(p)){
+                matches.add(p);
+            }
+        }
+        
+        return matches;
     }
     
     

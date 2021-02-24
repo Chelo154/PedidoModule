@@ -18,22 +18,19 @@ import com.caprice.dominio.Producto;
  */
 public class RepositoryManager {
     
-    private IRepository<Pedido> repoPedidos;
-    private IRepository<Producto> repoProductos;
-    private IRepository<Mesa> repoMesas;
+    private  IRepository<Pedido> repoPedidos;
+    private  IRepository<Producto> repoProductos;
+    private  IRepository<Mesa> repoMesas;
     
-    private static RepositoryManager manager;
+    private   RepositoryManager manager;    
+    
     
     public RepositoryManager(){
-        initConfig();
-    }
-    
-    public static RepositoryManager getManager(){
-        if(manager == null){
-            manager = new RepositoryManager();
-        }
-        return manager;
+        this.repoPedidos = new PedidoArrayListAdapter();
+        this.repoProductos = new ProductArrayListAdapter();
+        this.repoMesas = new MesaArrayListAdapter();
     }  
+    
 
     public IRepository<Pedido> getRepoPedidos() {
         return repoPedidos;
@@ -41,7 +38,7 @@ public class RepositoryManager {
 
     public IRepository<Producto> getRepoProductos() {
         return repoProductos;
-    }  
+    }     
 
     public IRepository<Mesa> getRepoMesas() {
         return repoMesas;
@@ -50,26 +47,18 @@ public class RepositoryManager {
     public void seedData(){
         seedProducts();
         seedMesas();
-    }
-    
-    
-    private void initConfig(){
-        this.repoPedidos = new PedidoArrayListAdapter();
-        this.repoProductos = new ProductArrayListAdapter();
-        this.repoMesas = new MesaArrayListAdapter();
-    }
-    
+    }   
     
     private void seedProducts(){
-        this.repoProductos.guardar(new Producto(1,"Papas",150));
-        this.repoProductos.guardar(new Producto(2,"Pizza Caprice",250));
-        this.repoProductos.guardar(new Producto(1,"Honey Beer",300));
+       repoProductos.guardar(new Producto(1,"Papas",150));
+       repoProductos.guardar(new Producto(2,"Pizza Caprice",250));
+       repoProductos.guardar(new Producto(1,"Honey Beer",300));
     }
     
     private void seedMesas(){
-        this.repoMesas.guardar(new Mesa(1, 2));
-        this.repoMesas.guardar(new Mesa(2, 4));
-        this.repoMesas.guardar(new Mesa(3, 2));
+        repoMesas.guardar(new Mesa(1, 2));
+        repoMesas.guardar(new Mesa(2, 4));
+        repoMesas.guardar(new Mesa(3, 2));
     }
     
 }

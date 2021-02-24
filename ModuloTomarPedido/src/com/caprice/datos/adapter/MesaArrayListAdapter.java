@@ -25,37 +25,53 @@ public class MesaArrayListAdapter implements IRepository<Mesa>{
     
     @Override
     public void guardar(Mesa objeto) {
-        
+        mesas.add(objeto);
     }
 
     @Override
     public List<Mesa> obtener() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return mesas;
     }
 
     @Override
     public Mesa buscarPorID(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
+        for(Mesa m : mesas){
+           if(m.getNumero() == id){
+               return m;
+           }
+       }
+       return null;
     }
 
     @Override
     public void Eliminar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Mesa eliminar = buscarPorID(id);
+        mesas.remove(eliminar);
     }
 
     @Override
     public void Modificar(int id, Mesa entidadModificada) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        for(Mesa m : mesas){
+            if(m.getNumero() == id){
+                m = entidadModificada;
+                break;
+            }
+        }
+        
     }
 
     @Override
     public int size() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return mesas.size();
     }
 
     @Override
-    public List<Mesa> where(Predicate<Mesa> predicado) {
+    public List<Mesa> where(Predicate<Mesa> predicado) {        
+        
         ArrayList<Mesa> matches = new ArrayList<>();
+        
         
         for(Mesa m : mesas){
             if(predicado.test(m)){
