@@ -58,6 +58,7 @@ public class RepositoryManager {
     public void seedData(){
         seedProducts();
         seedMesas();
+        seedMozo();
     }   
     
     private void seedProducts(){
@@ -70,6 +71,10 @@ public class RepositoryManager {
         repoMesas.guardar(new Mesa(1, 2));
         repoMesas.guardar(new Mesa(2, 4));
         repoMesas.guardar(new Mesa(3, 2));
+    }
+    
+    private void seedMozo(){
+        repoMozos.guardar(new Mozo(1, "Mauro"));
     }
     
 }

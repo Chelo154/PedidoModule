@@ -63,7 +63,7 @@ public class ControladorTomarPedidoTest {
         
        
         
-        controlador.iniciarPedido();
+        controlador.iniciarPedido(1);
         double total = controlador.getNuevoPedido().getTotal();
         
         assertEquals(0,total, 0);
@@ -123,7 +123,7 @@ public class ControladorTomarPedidoTest {
     public void TestAgregarProducto(){
         
         
-        controlador.iniciarPedido();
+        controlador.iniciarPedido(1);
         controlador.setMesa(1);
         controlador.agregarProducto(1, 2);
         controlador.agregarProducto(2, 2);
@@ -144,7 +144,7 @@ public class ControladorTomarPedidoTest {
         Object mesasExpected[] = new Object[]{mesaDisponible,mesaACombinar};
         mesaDisponible.combinar(mesaACombinar);
         
-        controlador.iniciarPedido();
+        controlador.iniciarPedido(1);
         controlador.setMesa(1);
        
         Object real[] = controlador.getNuevoPedido().getMesas().toArray();
@@ -161,7 +161,7 @@ public class ControladorTomarPedidoTest {
         
         mesaDisponible.combinar(mesaACombinar);
         
-        controlador.iniciarPedido();
+        controlador.iniciarPedido(1);
         controlador.setMesa(1);
         
         controlador.agregarProducto(1, 1);

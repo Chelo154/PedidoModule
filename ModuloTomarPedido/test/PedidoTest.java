@@ -18,6 +18,7 @@ public class PedidoTest {
 
     private static ArrayList<Producto> productos;
     private static ArrayList<Mesa> mesas;
+    private Mozo mozo;
     
     public PedidoTest() {
     }
@@ -36,13 +37,15 @@ public class PedidoTest {
         mesas.add(new Mesa(1,2));
         
         mesas.add(new Mesa(1,4));
+        
+        mozo = new Mozo(1,"Juan");
     }
     
 
     @Test
     public void TestNuevoPedido(){     
         
-        Pedido pedido = new Pedido(1,2);
+        Pedido pedido = new Pedido(1,2,mozo);
         Mesa mesa = mesas.get(0);
         
         pedido.setMesas(mesa);
@@ -62,7 +65,7 @@ public class PedidoTest {
     @Test
     public void TestMesaOcupada(){
         
-        Pedido pedido = new Pedido(1,2);
+        Pedido pedido = new Pedido(1,2,mozo);
         Mesa mesa = mesas.get(0);
         
         pedido.setMesas(mesa);
@@ -76,7 +79,7 @@ public class PedidoTest {
     @Test
     public void TestMesaPrincipalOcupada(){
         
-        Pedido pedido = new Pedido(1,2);
+        Pedido pedido = new Pedido(1,2,mozo);
         Mesa mesa = mesas.get(0);
         Mesa mesa2 = mesas.get(1);
         
@@ -93,7 +96,7 @@ public class PedidoTest {
     @Test
     public void TestMesaPrincipalOcupada2(){
         
-        Pedido pedido = new Pedido(1,2);
+        Pedido pedido = new Pedido(1,2,mozo);
         Mesa mesa = mesas.get(0);
         Mesa mesa2 = mesas.get(1);
         
