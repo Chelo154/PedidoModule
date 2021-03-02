@@ -23,7 +23,7 @@ public class RepositoryManager {
     private  IRepository<Pedido> repoPedidos;
     private  IRepository<Producto> repoProductos;
     private  IRepository<Mesa> repoMesas;
-    private  IRepository<Mozo> mozos;
+    private  IRepository<Mozo> repoMozos;
     
     private   RepositoryManager manager;    
     
@@ -33,8 +33,14 @@ public class RepositoryManager {
         this.repoPedidos = new PedidoArrayListAdapter();
         this.repoProductos = new ProductArrayListAdapter();
         this.repoMesas = new MesaArrayListAdapter();
-        this.mozos = new MozoArrayListAdapter();
+        this.repoMozos = new MozoArrayListAdapter();
     }  
+
+    public IRepository<Mozo> getRepoMozos() {
+        return repoMozos;
+    }
+
+    
     
 
     public IRepository<Pedido> getRepoPedidos() {
