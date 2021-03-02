@@ -6,9 +6,11 @@
 package com.caprice.datos.common;
 
 import com.caprice.datos.adapter.MesaArrayListAdapter;
+import com.caprice.datos.adapter.MozoArrayListAdapter;
 import com.caprice.datos.adapter.PedidoArrayListAdapter;
 import com.caprice.datos.adapter.ProductArrayListAdapter;
 import com.caprice.dominio.Mesa;
+import com.caprice.dominio.Mozo;
 import com.caprice.dominio.Pedido;
 import com.caprice.dominio.Producto;
 
@@ -21,15 +23,24 @@ public class RepositoryManager {
     private  IRepository<Pedido> repoPedidos;
     private  IRepository<Producto> repoProductos;
     private  IRepository<Mesa> repoMesas;
+    private  IRepository<Mozo> repoMozos;
     
     private   RepositoryManager manager;    
     
     
-    public RepositoryManager(){
+    public RepositoryManager()
+    {
         this.repoPedidos = new PedidoArrayListAdapter();
         this.repoProductos = new ProductArrayListAdapter();
         this.repoMesas = new MesaArrayListAdapter();
+        this.repoMozos = new MozoArrayListAdapter();
     }  
+
+    public IRepository<Mozo> getRepoMozos() {
+        return repoMozos;
+    }
+
+    
     
 
     public IRepository<Pedido> getRepoPedidos() {
@@ -47,6 +58,7 @@ public class RepositoryManager {
     public void seedData(){
         seedProducts();
         seedMesas();
+        seedMozo();
     }   
     
     private void seedProducts(){
@@ -59,6 +71,10 @@ public class RepositoryManager {
         repoMesas.guardar(new Mesa(1, 2));
         repoMesas.guardar(new Mesa(2, 4));
         repoMesas.guardar(new Mesa(3, 2));
+    }
+    
+    private void seedMozo(){
+        repoMozos.guardar(new Mozo(1, "Mauro"));
     }
     
 }

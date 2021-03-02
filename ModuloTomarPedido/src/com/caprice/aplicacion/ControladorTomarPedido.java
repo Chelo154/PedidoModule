@@ -16,52 +16,50 @@ import java.util.List;
  * @author chelo
  */
 public class ControladorTomarPedido {
-    
-    private IRepository<Producto> repoProductos;
-    private IRepository<Pedido> repoPedidos; 
-    private IRepository<Mesa> repoMesas;
+            
+    private RepositoryManager manager;
     Pedido nuevoPedido;
     
    
    public ControladorTomarPedido(RepositoryManager manager){
        
-        this.repoProductos = manager.getRepoProductos();
-        this.repoPedidos = manager.getRepoPedidos();
-        this.repoMesas = manager.getRepoMesas();
+        this.manager = manager; 
+              
    }
 
     public Pedido getNuevoPedido() {
         return nuevoPedido;
     }      
    
-   public void iniciarPedido(){
+   public void iniciarPedido(int legajo){
        
-       int numero = repoPedidos.size() + 1;
-       nuevoPedido = new Pedido(numero,0);
+       Mozo mozo = manager.getRepoMozos().buscarPorID(legajo);
+       int numero = manager.getRepoPedidos().size() + 1;
+       nuevoPedido = new Pedido(numero,0, mozo);
       
    }
    
    public List<Mesa> getMesasLibres(){
-       return repoMesas.where(mesa -> mesa.getEstado() == EstadoMesa.LIBRE);
+       return manager.getRepoMesas().where(mesa -> mesa.getEstado() == EstadoMesa.LIBRE);
    }
    
    public void setMesa(int codigoMesa){
         
-       Mesa mesa = repoMesas.buscarPorID(codigoMesa);
+       Mesa mesa = manager.getRepoMesas().buscarPorID(codigoMesa);
         
         nuevoPedido.setMesas(mesa);
    }
    
    public void agregarProducto(int codigoProducto, int cantidad){
        
-       Producto producto = repoProductos.buscarPorID(codigoProducto);
+       Producto producto = manager.getRepoProductos().buscarPorID(codigoProducto);
        
        nuevoPedido.agregarLinea(producto, cantidad);
    }   
    
    public void confirmarPedido(){
        nuevoPedido.getMesaPrincipal().ocupar();
-       repoPedidos.guardar(nuevoPedido);
+       manager.getRepoPedidos().guardar(nuevoPedido);
    }
    
    
