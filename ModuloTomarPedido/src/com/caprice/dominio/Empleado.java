@@ -12,9 +12,9 @@ package com.caprice.dominio;
 public class Empleado {
     
     int legajo;
-    int nombre;
+    String nombre;
     
-    public Empleado(int legajo, int nombre){
+    public Empleado(int legajo, String nombre){
         this.legajo = legajo;
         this.nombre = nombre;
     } 
@@ -23,7 +23,7 @@ public class Empleado {
         return legajo;
     }
 
-    public int getNombre() {
+    public String getNombre() {
         return nombre;
     }  
     

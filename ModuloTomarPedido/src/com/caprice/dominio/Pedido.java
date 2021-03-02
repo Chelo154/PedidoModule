@@ -15,15 +15,17 @@ public class Pedido {
     
     int numero;
     int tiempoEspera;
-    double total;    
+    double total;  
+    Mozo mozo;
     ArrayList<LineaPedido> lineas;
     ArrayList<Mesa> mesas;
     
     /*-------------Constructor--------------------*/
     
-    public Pedido(int numero, int tiempoEspera){
+    public Pedido(int numero, int tiempoEspera,Mozo mozo){
        this.numero = numero;
        this.tiempoEspera = tiempoEspera;
+       this.mozo = mozo;
        this.lineas = new ArrayList<>();
        this.calcularTotal();
     }

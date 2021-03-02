@@ -20,6 +20,7 @@ public class ControladorTomarPedido {
     private IRepository<Producto> repoProductos;
     private IRepository<Pedido> repoPedidos; 
     private IRepository<Mesa> repoMesas;
+    private IRepository<Mozo> repoMozos;
     Pedido nuevoPedido;
     
    
@@ -28,16 +29,18 @@ public class ControladorTomarPedido {
         this.repoProductos = manager.getRepoProductos();
         this.repoPedidos = manager.getRepoPedidos();
         this.repoMesas = manager.getRepoMesas();
+        this.repoMozos = manager.getMozos();
    }
 
     public Pedido getNuevoPedido() {
         return nuevoPedido;
     }      
    
-   public void iniciarPedido(){
+   public void iniciarPedido(int legajo){
        
+       Mozo mozo = repoMozos.buscarPorID(legajo);
        int numero = repoPedidos.size() + 1;
-       nuevoPedido = new Pedido(numero,0);
+       nuevoPedido = new Pedido(numero,0, mozo);
       
    }
    

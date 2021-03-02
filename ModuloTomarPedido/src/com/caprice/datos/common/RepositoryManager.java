@@ -6,9 +6,11 @@
 package com.caprice.datos.common;
 
 import com.caprice.datos.adapter.MesaArrayListAdapter;
+import com.caprice.datos.adapter.MozoArrayListAdapter;
 import com.caprice.datos.adapter.PedidoArrayListAdapter;
 import com.caprice.datos.adapter.ProductArrayListAdapter;
 import com.caprice.dominio.Mesa;
+import com.caprice.dominio.Mozo;
 import com.caprice.dominio.Pedido;
 import com.caprice.dominio.Producto;
 
@@ -21,14 +23,17 @@ public class RepositoryManager {
     private  IRepository<Pedido> repoPedidos;
     private  IRepository<Producto> repoProductos;
     private  IRepository<Mesa> repoMesas;
+    private  IRepository<Mozo> mozos;
     
     private   RepositoryManager manager;    
     
     
-    public RepositoryManager(){
+    public RepositoryManager()
+    {
         this.repoPedidos = new PedidoArrayListAdapter();
         this.repoProductos = new ProductArrayListAdapter();
         this.repoMesas = new MesaArrayListAdapter();
+        this.mozos = new MozoArrayListAdapter();
     }  
     
 
